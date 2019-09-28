@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Calculator
+{
+    public static void main(String[] args)
+    {
+       int num1 = 0;    // Variablen bestimmen für Zahl 1,2 ; Ergebnis und Zeichen + - / *
+       int num2 = 0;
+       int num3 = 0;
+       char operator;
+
+        Scanner scanInput = new Scanner (System.in); // Scanner Methode damit die Eingabe gefiltert wird
+
+        System.out.println("Enter first number");   //Anfrage was einzugeben
+        num1 = scanInput.nextInt();                 // "Filtert" Eingabe nach erster Zahl (Int)
+        System.out.println("Enter second number");
+        num2 = scanInput.nextInt();
+        System.out.println("Which operator");
+        operator = scanInput.next().charAt(0);      //"Filtert" Eingabe nach Zeichen
+
+        switch (operator) {                         //Je nach Eingabe von der obigen Zeile bestimmt switch statement welcher Token ausgeführt werden soll
+            case '+':  num3 = num1+num2;
+                break;
+            case '-':  num3 = num1-num2;
+                break;
+            case '/':  num3 = num1/num2;
+                break;
+            case '*':  num3 = num1*num2;
+                break;
+
+        }
+
+        System.out.println(num3);       //Ausgabe nach "außen" was das Ergebnis ist
+
+    }
+}
