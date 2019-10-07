@@ -4,33 +4,44 @@ public class Calculator
 {
     public static void main(String[] args)
     {
-        boolean check1 , check2;
-        double num1 = 0 , num2 = 0 , num3 = 0 ;
+        int num1 = 0;
+        int num2 = 0;
+        double num3 = 0 ;
         char operator;
 
-        Scanner scanInput = new Scanner (System.in);
 
+        System.out.println("Enter (whole,decimal) number");         //Auffoderung zur <Eingabe>
 
-        System.out.println("Enter first (whole,decimal) number");
-        check1 = scanInput.hasNextDouble();
-        if (check1) {
-            num1 = scanInput.nextDouble();
-        } else {
-            System.out.println("Please enter a WHOLE or DECIMAL number");
+        Scanner scanInput = new Scanner (System.in);                //Allererste <Eingabe> tätigen
+
+        while(!scanInput.hasNextDouble()) {             //Prüft ob Eingabe Int/Double entspricht, wiederholt Anfrage falls nicht
+
+        if (scanInput.hasNext("c")) {
+            break; }
+
+        System.out.println("Re-enter a (whole,decimal) number please");
+        scanInput.next();
+
         }
 
+        num1=scanInput.nextInt();                                    //Speichert <Eingabe> als num1
 
-        System.out.println("Enter second (whole,decimal) number");
-        check2 = scanInput.hasNextDouble();
-        if (check2) {
-            num2 = scanInput.nextDouble();
-        } else {
-            System.out.println("Please enter a WHOLE or DECIMAL number");
+        System.out.println("Enter second (whole,decimal) number");        //Auffoderung zur zweiten <Eingabe>
+
+        while(!scanInput.hasNextDouble()) {             //Prüft ob Eingabe Int/Double entspricht, wiederholt Anfrage falls nicht
+
+            if (scanInput.hasNext("c")) {
+                break; }
+
+            System.out.println("Re-enter a (whole,decimal) number please");
+            scanInput.next();
+
         }
 
+        num2=scanInput.nextInt();                                         //Speichert zweite <Eingabe> als num2
 
-        System.out.println("Which operator (+ , - , / , *) ");
-        operator = scanInput.next().charAt(0);
+        System.out.println("Which operator (+ , - , / , *) ");            //Auffoderung zur <Eingabe>
+        operator = scanInput.next().charAt(0);                            //Speichert <Eingabe> als operator
 
         switch (operator) {
 
@@ -38,7 +49,7 @@ public class Calculator
                 break;
             case '-':  num3 =  (num1-num2);
                 break;
-            case '/':  num3 =  (num1/num2);
+            case '/':  num3 =  ((double) num1/num2);
                 break;
             case '*':  num3 =  (num1*num2);
                 break;
