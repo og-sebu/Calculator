@@ -1,62 +1,75 @@
 import java.util.Scanner;
 
-public class Calculator
-{
-    public static void main(String[] args)
-    {
-        int num1 = 0;
-        int num2 = 0;
-        double num3 = 0 ;
-        char operator;
+public class Calculator {
 
+    public static int getNumberFromInput(Scanner scanInput, String request) {
 
-        System.out.println("Enter (whole,decimal) number");         //Auffoderung zur <Eingabe>
+        System.out.println(request);
 
-        Scanner scanInput = new Scanner (System.in);                //Allererste <Eingabe> tätigen
-
-        while(!scanInput.hasNextDouble()) {             //Prüft ob Eingabe Int/Double entspricht, wiederholt Anfrage falls nicht
-
-        if (scanInput.hasNext("c")) {
-            break; }
-
-        System.out.println("Re-enter a (whole,decimal) number please");
-        scanInput.next();
-
-        }
-
-        num1=scanInput.nextInt();                                    //Speichert <Eingabe> als num1
-
-        System.out.println("Enter second (whole,decimal) number");        //Auffoderung zur zweiten <Eingabe>
-
-        while(!scanInput.hasNextDouble()) {             //Prüft ob Eingabe Int/Double entspricht, wiederholt Anfrage falls nicht
+        while (!scanInput.hasNextDouble()) {             //Prüft ob Eingabe Int/Double entspricht, wiederholt Anfrage falls nicht
 
             if (scanInput.hasNext("c")) {
-                break; }
+                break;
+            }
 
             System.out.println("Re-enter a (whole,decimal) number please");
             scanInput.next();
 
         }
 
-        num2=scanInput.nextInt();                                         //Speichert zweite <Eingabe> als num2
+        return scanInput.nextInt();
 
-        System.out.println("Which operator (+ , - , / , *) ");            //Auffoderung zur <Eingabe>
-        operator = scanInput.next().charAt(0);                            //Speichert <Eingabe> als operator
+    }
+
+    public static double calculation(char operator, int num1, int num2) {
+
+        double num3 = 0;
 
         switch (operator) {
 
-            case '+':  num3 =  (num1+num2);
+            case '+':
+                num3 = (num1 + num2);
                 break;
-            case '-':  num3 =  (num1-num2);
+            case '-':
+                num3 = (num1 - num2);
                 break;
-            case '/':  num3 =  ((double) num1/num2);
+            case '/':
+                num3 = ((double) num1 / num2);
                 break;
-            case '*':  num3 =  (num1*num2);
+            case '*':
+                num3 = (num1 * num2);
                 break;
 
-            }
+        }
+
+        return num3;
+
+    }
+
+    public static char getOperatorFromInput(Scanner scanInput, String request) {
+
+        System.out.println(request);
+
+        return scanInput.next().charAt(0);
+
+    }
+
+
+    public static void main(String[] args) {
+
+        Scanner scanInput = new Scanner(System.in);
+
+        String request = "Enter first number (or enter 'c' to skip)";
+        int num1 = getNumberFromInput(scanInput, request);
+
+        request = "Enter second number (or enter  'c' to skip)";
+        int num2 = getNumberFromInput(scanInput, request);
+
+        char operator = getOperatorFromInput(scanInput, "Which operator (+ , - , / , *) ");
+        double num3 = calculation(operator, num1, num2);
 
         System.out.println(num3);
 
     }
+
 }
