@@ -50,14 +50,40 @@ public class Calculator {
 
         System.out.println(request);
 
+        boolean correct=false;
+
+        while (!correct) {             //Prüft ob Eingabe Int/Double entspricht, wiederholt Anfrage falls nicht
+
+            String operator = "+";
+
+            correct = checkIfOperator(scanInput,operator);
+
+            System.out.println("Re-enter a (whole,decimal) number please");
+            scanInput.next();
+
+        }
+
         return scanInput.next().charAt(0);
 
     }
 
+    public static boolean checkIfOperator (Scanner scanInput, String operator) {
+
+        if (scanInput.hasNext(operator)) {
+
+            return true;
+
+        }
+
+        return false;
+
+    }
 
     public static void main(String[] args) {
 
         Scanner scanInput = new Scanner(System.in);
+
+
 
         String request = "Enter first number (or enter 'c' to skip)";
         int num1 = getNumberFromInput(scanInput, request);
